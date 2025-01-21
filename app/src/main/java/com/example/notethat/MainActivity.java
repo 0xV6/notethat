@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    String arr[]= {"this", "is", "first", "line","this", "is", "first", "line","this", "is", "first", "line","this", "is", "first", "line","this", "is", "first", "line"};
+    String arr[]= {"this", "is", "first", "line" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
