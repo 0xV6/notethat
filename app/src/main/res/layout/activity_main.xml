@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="43dp"
+        android:layout_width="48dp"
         android:layout_height="50dp"
         android:text="Settings"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
@@ -53,7 +53,7 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="55dp"
-        android:layout_height="33dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/appName"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,7 @@
         android:id="@+id/button4"
         android:layout_width="350dp"
         android:layout_height="50dp"
+        android:onClick="openActivity"
         android:text="CREATE NEW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

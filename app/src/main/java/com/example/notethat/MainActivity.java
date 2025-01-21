@@ -1,6 +1,8 @@
 package com.example.notethat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,5 +31,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter ad = new ArrayAdapter(this,android.R.layout.simple_list_item_1, arr);
         listView.setAdapter(ad);
 
+    }
+    public void openActivity(View v){
+        Intent intent = new Intent(this, Notes.class);
+        startActivity(intent);
     }
 }

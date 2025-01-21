@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteThat"
         tools:targetApi="31">
+        <activity android:name=".Notes"
+            android:label="Note"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
