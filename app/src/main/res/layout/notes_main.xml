@@ -108,14 +108,11 @@
             android:layout_height="match_parent"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
+            android:focusableInTouchMode="true"
             android:gravity="start|top"
             android:hint="Type here"
             android:inputType="textMultiLine"
             android:textColorHint="#555151" />
     </ScrollView>
-
-    <requestFocus
-        android:layout_width="62dp"
-        android:layout_height="85dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
