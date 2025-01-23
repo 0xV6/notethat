@@ -5,13 +5,21 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.sql.Connection;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Notes extends AppCompatActivity {
 
@@ -34,6 +42,8 @@ public class Notes extends AppCompatActivity {
         int lines = ScreenSizeHelper.getScreenLines(this, textSizePx);
 
         Toast.makeText(this, "Number of lines that fit on the screen: " + lines, Toast.LENGTH_LONG).show();
+
+
     }
 
     private void showPopupMenu(View view) {
@@ -62,23 +72,39 @@ public class Notes extends AppCompatActivity {
         popupMenu.show();
     }
 
-    public void saveNote(String noteData){
-        String sql = """
-            INSERT INTO notes(description)
-            VALUES (?);
-        """;
+    private void sendStringToServer(String message) {
+        String url = "http://127.0.0.1:6000/save";
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, noteData);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show();
+                },
+                error -> {
+                    Toast.makeText(this, "Error sending message", Toast.LENGTH_SHORT).show();
+                }) {
 
-            pstmt.executeUpdate();
-            System.out.println("note data:  " + noteData + " has been added to the database");
-        } catch (SQLException e) {
-            System.out.println("Error: Unable to save note.");
-            e.printStackTrace();
-        }
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("message", message);
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
     }
+    @Override
+    public void onBackPressed() {
+        String message = "User pressed the back button";
+        sendStringToServer(message);
+
+        super.onBackPressed();
+    }
+
+
+
+
 
 
 }
