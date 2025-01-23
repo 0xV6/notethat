@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.Connection;
+import java.sql.*;
+
 public class Notes extends AppCompatActivity {
 
     @Override
@@ -57,6 +60,24 @@ public class Notes extends AppCompatActivity {
         });
 
         popupMenu.show();
+    }
+
+    public void saveNote(String noteData){
+        String sql = """
+            INSERT INTO notes(description)
+            VALUES (?);
+        """;
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, noteData);
+
+            pstmt.executeUpdate();
+            System.out.println("note data:  " + noteData + " has been added to the database");
+        } catch (SQLException e) {
+            System.out.println("Error: Unable to save note.");
+            e.printStackTrace();
+        }
     }
 
 
