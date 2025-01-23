@@ -1,10 +1,12 @@
 package com.example.notethat;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +24,13 @@ public class Notes extends AppCompatActivity {
                 showPopupMenu(v);
             }
         });
+        float textSizeSp = 16f;
+
+        float textSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSizeSp, getResources().getDisplayMetrics());
+
+        int lines = ScreenSizeHelper.getScreenLines(this, textSizePx);
+
+        Toast.makeText(this, "Number of lines that fit on the screen: " + lines, Toast.LENGTH_LONG).show();
     }
 
     private void showPopupMenu(View view) {
@@ -49,5 +58,6 @@ public class Notes extends AppCompatActivity {
 
         popupMenu.show();
     }
+
 
 }

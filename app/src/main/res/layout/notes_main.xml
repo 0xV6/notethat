@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="attachments" />
 
         <Button
             android:id="@+id/button5"
@@ -93,25 +93,29 @@
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="407dp"
+        android:layout_height="632dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <ScrollView
+        <EditText
+            android:id="@+id/editTextTextMultiLine2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Type here"
+            android:inputType="textMultiLine"
+            android:textColorHint="#555151" />
+    </ScrollView>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
-        </ScrollView>
-
-    </com.google.android.material.textfield.TextInputLayout>
+    <requestFocus
+        android:layout_width="62dp"
+        android:layout_height="85dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
