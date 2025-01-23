@@ -30,7 +30,7 @@ public class Notes extends AppCompatActivity {
         setContentView(R.layout.notes_main);
 
         View layout = findViewById(R.id.scrollView);
-        EditText noteEditText = findViewById(R.id.editTextTextMultiLine2);
+        EditText noteEditText = findViewById(R.id.noteArea);
 
         layout.setOnClickListener(v -> {
             noteEditText.requestFocus();
@@ -82,7 +82,7 @@ public class Notes extends AppCompatActivity {
     }
 
     private void sendStringToServer(String message) {
-        String url = "http://127.0.0.1:6000/save";
+        String url = "https://b9e4-2401-4900-5f9b-fe12-30a1-fd5a-5c6c-1ef2.ngrok-free.app/save";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
