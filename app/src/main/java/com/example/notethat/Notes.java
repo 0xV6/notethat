@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -28,6 +29,16 @@ public class Notes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
 
+        View layout = findViewById(R.id.scrollView);
+        EditText noteEditText = findViewById(R.id.editTextTextMultiLine2);
+
+        layout.setOnClickListener(v -> {
+            noteEditText.requestFocus();
+            InputMethodManager imm = (InputMethodManager)
+            getSystemService(INPUT_METHOD_SERVICE);
+                imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
+        });
+
         Button button7 = findViewById(R.id.button7);
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +53,6 @@ public class Notes extends AppCompatActivity {
         int lines = ScreenSizeHelper.getScreenLines(this, textSizePx);
 
         Toast.makeText(this, "Number of lines that fit on the screen: " + lines, Toast.LENGTH_LONG).show();
-
-
     }
 
     private void showPopupMenu(View view) {
