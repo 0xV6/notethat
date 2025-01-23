@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -19,6 +21,16 @@ public class Notes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
+
+        View layout = findViewById(R.id.scrollView);
+        EditText noteEditText = findViewById(R.id.editTextTextMultiLine2);
+
+        layout.setOnClickListener(v -> {
+            noteEditText.requestFocus();
+            InputMethodManager imm = (InputMethodManager)
+            getSystemService(INPUT_METHOD_SERVICE);
+                imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
+        });
 
         Button button7 = findViewById(R.id.button7);
         button7.setOnClickListener(new View.OnClickListener() {
@@ -62,23 +74,23 @@ public class Notes extends AppCompatActivity {
         popupMenu.show();
     }
 
-    public void saveNote(String noteData){
-        String sql = """
-            INSERT INTO notes(description)
-            VALUES (?);
-        """;
-
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, noteData);
-
-            pstmt.executeUpdate();
-            System.out.println("note data:  " + noteData + " has been added to the database");
-        } catch (SQLException e) {
-            System.out.println("Error: Unable to save note.");
-            e.printStackTrace();
-        }
-    }
+//    public void saveNote(String noteData){
+//        String sql = """
+//            INSERT INTO notes(description)
+//            VALUES (?);
+//        """;
+//
+//        try (Connection conn = DatabaseManager.getConnection();
+//             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//            pstmt.setString(1, noteData);
+//
+//            pstmt.executeUpdate();
+//            System.out.println("note data:  " + noteData + " has been added to the database");
+//        } catch (SQLException e) {
+//            System.out.println("Error: Unable to save note.");
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }
