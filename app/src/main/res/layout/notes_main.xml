@@ -95,27 +95,28 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="407dp"
-        android:layout_height="632dp"
-        android:layout_marginTop="3dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <EditText
-            android:id="@+id/noteArea"
+            android:id="@+id/noteText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:autofillHints=""
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:focusableInTouchMode="true"
             android:gravity="start|top"
             android:hint="Type here"
             android:inputType="textMultiLine"
-            android:textColorHint="#555151" />
+            android:textColorHint="#555151"
+            tools:ignore="TouchTargetSizeCheck" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

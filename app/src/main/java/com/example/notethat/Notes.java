@@ -12,15 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import java.sql.Connection;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Notes extends AppCompatActivity {
 
@@ -29,15 +22,14 @@ public class Notes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
 
-        View layout = findViewById(R.id.scrollView);
-        EditText noteEditText = findViewById(R.id.noteArea);
+//        View layout = findViewById(R.id.linearLayout2);
+//        EditText noteEditText = findViewById(R.id.noteText);
 
-        layout.setOnClickListener(v -> {
-            noteEditText.requestFocus();
-            InputMethodManager imm = (InputMethodManager)
-            getSystemService(INPUT_METHOD_SERVICE);
-                imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
-        });
+//        layout.setOnClickListener(v -> {
+//            noteEditText.requestFocus();
+//            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//                imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
+//        });
 
         Button button7 = findViewById(R.id.button7);
         button7.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +45,10 @@ public class Notes extends AppCompatActivity {
         int lines = ScreenSizeHelper.getScreenLines(this, textSizePx);
 
         Toast.makeText(this, "Number of lines that fit on the screen: " + lines, Toast.LENGTH_LONG).show();
+    }
+
+    public void showKeyboard(View view) {
+        Toast.makeText(this, "Clicked!", Toast.LENGTH_LONG).show();
     }
 
     private void showPopupMenu(View view) {
@@ -81,35 +77,35 @@ public class Notes extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void sendStringToServer(String message) {
-        String url = "https://b9e4-2401-4900-5f9b-fe12-30a1-fd5a-5c6c-1ef2.ngrok-free.app/save";
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
-                    Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show();
-                },
-                error -> {
-                    Toast.makeText(this, "Error sending message", Toast.LENGTH_SHORT).show();
-                }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("message", message);
-                return params;
-            }
-        };
-
-        queue.add(stringRequest);
-    }
-    @Override
-    public void onBackPressed() {
-        String message = "User pressed the back button";
-        sendStringToServer(message);
-
-        super.onBackPressed();
-    }
+//    private void sendStringToServer(String message) {
+//        String url = "https://b9e4-2401-4900-5f9b-fe12-30a1-fd5a-5c6c-1ef2.ngrok-free.app/save";
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                response -> {
+//                    Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show();
+//                },
+//                error -> {
+//                    Toast.makeText(this, "Error sending message", Toast.LENGTH_SHORT).show();
+//                }) {
+//
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("message", message);
+//                return params;
+//            }
+//        };
+//
+//        queue.add(stringRequest);
+//    }
+//    @Override
+//    public void onBackPressed() {
+//        String message = "User pressed the back button";
+//        sendStringToServer(message);
+//
+//        super.onBackPressed();
+//    }
 
 
 
