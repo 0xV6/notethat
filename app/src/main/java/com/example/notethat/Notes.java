@@ -1,13 +1,13 @@
 package com.example.notethat;
 
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,72 +17,50 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.sql.Connection;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Notes extends AppCompatActivity {
 
+    private EditText noteEditText;
+    private ScrollView scrollView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
 
-        View layout = findViewById(R.id.scrollView);
-        EditText noteEditText = findViewById(R.id.noteArea);
+        noteEditText = findViewById(R.id.noteArea);
+        scrollView = findViewById(R.id.scrollView);
 
-        layout.setOnClickListener(v -> {
-            noteEditText.requestFocus();
-            InputMethodManager imm = (InputMethodManager)
-            getSystemService(INPUT_METHOD_SERVICE);
+        scrollView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                noteEditText.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager)
+                        getSystemService(INPUT_METHOD_SERVICE);
                 imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
+            }
+            return false;
         });
 
         Button button7 = findViewById(R.id.button7);
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupMenu(v);
-            }
-        });
-        float textSizeSp = 16f;
-
-        float textSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSizeSp, getResources().getDisplayMetrics());
-
-        int lines = ScreenSizeHelper.getScreenLines(this, textSizePx);
-
-        Toast.makeText(this, "Number of lines that fit on the screen: " + lines, Toast.LENGTH_LONG).show();
+        button7.setOnClickListener(v -> showPopupMenu(v));
     }
 
     private void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-//                    case R.id.action_one:
-//                        // Handle action one
-//                        return true;
-//                    case R.id.action_two:
-//                        // Handle action two
-//                        return true;
-//                    case R.id.action_three:
-//                        // Handle action three
-//                        return true;
-                    default:
-                        return false;
-                }
-            }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            return false;
         });
 
         popupMenu.show();
     }
 
     private void sendStringToServer(String message) {
-        String url = "https://b9e4-2401-4900-5f9b-fe12-30a1-fd5a-5c6c-1ef2.ngrok-free.app/save";
+        String url = "https://your-server-url.com/save";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -103,6 +81,7 @@ public class Notes extends AppCompatActivity {
 
         queue.add(stringRequest);
     }
+
     @Override
     public void onBackPressed() {
         String message = "User pressed the back button";
@@ -110,10 +89,4 @@ public class Notes extends AppCompatActivity {
 
         super.onBackPressed();
     }
-
-
-
-
-
-
 }
