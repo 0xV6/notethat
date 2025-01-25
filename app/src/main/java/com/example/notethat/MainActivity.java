@@ -36,4 +36,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Notes.class);
         startActivity(intent);
     }
+
+    public void openSettings(View v){
+        Intent intent = new Intent(this, SettingsMain.class);
+        startActivity(intent);
+    }
 }

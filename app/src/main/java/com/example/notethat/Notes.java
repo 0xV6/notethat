@@ -30,7 +30,7 @@ public class Notes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
 
-        noteEditText = findViewById(R.id.noteArea);
+        noteEditText = findViewById(R.id.noteText);
         scrollView = findViewById(R.id.scrollView);
 
         scrollView.setOnTouchListener((v, event) -> {
@@ -59,33 +59,39 @@ public class Notes extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void sendStringToServer(String message) {
-        String url = "https://your-server-url.com/save";
-        RequestQueue queue = Volley.newRequestQueue(this);
+    private void sendStringToServer() {
+        final String message = noteEditText.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
-                    Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show();
-                },
-                error -> {
-                    Toast.makeText(this, "Error sending message", Toast.LENGTH_SHORT).show();
-                }) {
+        if (!message.isEmpty()) {
+            String url = "https://65ad-2401-4900-596b-e17b-88f5-71d9-9b83-61b9.ngrok-free.app/save";
+            RequestQueue queue = Volley.newRequestQueue(this);
 
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("message", message);
-                return params;
-            }
-        };
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    response -> {
+                        Toast.makeText(this, "Note saved successfully", Toast.LENGTH_SHORT).show();
+                    },
+                    error -> {
+                        Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show();
+                    }) {
 
-        queue.add(stringRequest);
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("message", message);
+                    return params;
+                }
+            };
+            queue.add(stringRequest);
+        } else {
+            Toast.makeText(this, "Note is empty", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onBackPressed() {
         String message = "User pressed the back button";
-        sendStringToServer(message);
+        sendStringToServer();
 
         super.onBackPressed();
     }
