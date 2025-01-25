@@ -1,7 +1,9 @@
 package com.example.notethat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -12,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.notethat.databinding.ActivityMainBinding;
-import com.example.notethat.databinding.SettingsMainBinding;
 
 public class SettingsMain extends AppCompatActivity {
 
@@ -21,5 +21,9 @@ public class SettingsMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_main);
+    }
+    public void openSync(View v){
+        Intent intent = new Intent(this, SyncSettings.class);
+        startActivity(intent);
     }
 }
