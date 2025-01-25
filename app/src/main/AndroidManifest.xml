@@ -23,6 +23,11 @@
             android:name=".Notes"
             android:parentActivityName=".MainActivity" >
         </activity>
+
+        <activity
+            android:name=".NotesUpdate"
+            android:parentActivityName=".MainActivity" >
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" >

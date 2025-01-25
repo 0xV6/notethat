@@ -12,11 +12,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +68,7 @@ public class Notes extends AppCompatActivity {
         final String message = noteEditText.getText().toString().trim();
 
         if (!message.isEmpty()) {
-            String url = "https://65ad-2401-4900-596b-e17b-88f5-71d9-9b83-61b9.ngrok-free.app/save";
+            String url = "https://3cb1-2401-4900-596b-e17b-d424-230e-1b57-a72d.ngrok-free.app/save";
             RequestQueue queue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -92,7 +97,6 @@ public class Notes extends AppCompatActivity {
     public void onBackPressed() {
         String message = "User pressed the back button";
         sendStringToServer();
-
         super.onBackPressed();
     }
 }
