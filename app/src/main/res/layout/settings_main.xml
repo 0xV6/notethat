@@ -6,25 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Settings"
-        android:textSize="35dp"
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/settingsText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Settings"
+            android:textSize="35dp" />
+    </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -43,9 +51,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:padding="10dp"
                     android:text="Sync"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
 
                 <Button
@@ -55,7 +62,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Account"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
             </LinearLayout>
 
@@ -71,7 +78,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Privacy"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
 
                 <Button
@@ -81,7 +88,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Theme"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
             </LinearLayout>
 
@@ -97,7 +104,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Notification"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
 
                 <Button
@@ -107,7 +114,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Profiles"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     app:cornerRadius="25dp" />
             </LinearLayout>
         </LinearLayout>

@@ -15,11 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.notethat.databinding.ActivityMainBinding;
 import com.example.notethat.databinding.SettingsMainBinding;
 
-public class SettingsMain extends AppCompatActivity {
+public class SyncSettings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_main);
+        setContentView(R.layout.activity_sync_settings);
     }
 }
