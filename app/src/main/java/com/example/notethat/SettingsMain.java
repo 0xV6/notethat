@@ -26,4 +26,9 @@ public class SettingsMain extends AppCompatActivity {
         Intent intent = new Intent(this, SyncSettings.class);
         startActivity(intent);
     }
+
+    public void openPrivacy(View v){
+        Intent intent = new Intent(this, PrivacySettings.class);
+        startActivity(intent);
+    }
 }

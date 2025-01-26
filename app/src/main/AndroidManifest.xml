@@ -29,7 +29,10 @@
             android:name=".SyncSettings"
             android:parentActivityName=".SettingsMain" >
         </activity>
-
+        <activity
+            android:name=".PrivacySettings"
+            android:parentActivityName=".SettingsMain" >
+        </activity>
         <activity
             android:name=".NotesUpdate"
             android:parentActivityName=".MainActivity" >

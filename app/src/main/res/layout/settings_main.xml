@@ -78,6 +78,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:onClick="openPrivacy"
                     android:text="Privacy"
                     android:textSize="20dp"
                     app:cornerRadius="25dp" />
