@@ -28,14 +28,19 @@ import java.util.Map;
 public class NotesUpdate extends AppCompatActivity {
 
     private EditText noteEditText;
+    private EditText noteTitle;
     private ScrollView scrollView;
+
+    private int noteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_main);
 
+        noteId = getIntent().getIntExtra("note_id", -1);
         noteEditText = findViewById(R.id.noteText);
+        noteTitle = findViewById(R.id.noteTitle);
         scrollView = findViewById(R.id.scrollView);
 
         scrollView.setOnTouchListener((v, event) -> {
@@ -51,6 +56,12 @@ public class NotesUpdate extends AppCompatActivity {
 
         Button button7 = findViewById(R.id.button7);
         button7.setOnClickListener(v -> showPopupMenu(v));
+
+        String title = getIntent().getStringExtra("title");
+        String content = getIntent().getStringExtra("content");
+
+        noteEditText.setText(content);
+        noteTitle.setText(title);
     }
 
     private void showPopupMenu(View view) {
@@ -70,9 +81,9 @@ public class NotesUpdate extends AppCompatActivity {
         EditText noteTitleText = findViewById(R.id.noteTitle);
         final String description = noteEditText.getText().toString().trim();
         final String title = noteTitleText.getText().toString().trim();
-        final int noteId = 2;
+        final int noteId = this.noteId;
 
-        String url = "https://3cb1-2401-4900-596b-e17b-d424-230e-1b57-a72d.ngrok-free.app/update";
+        String url = "https://d524-2401-4900-596b-e17b-9c1c-5906-d4f1-6fa8.ngrok-free.app/update";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

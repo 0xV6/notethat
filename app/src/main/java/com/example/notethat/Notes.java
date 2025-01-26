@@ -18,16 +18,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Notes extends AppCompatActivity {
 
     private EditText noteEditText;
+    private EditText noteTitle;
     private ScrollView scrollView;
 
     @Override
@@ -36,6 +33,7 @@ public class Notes extends AppCompatActivity {
         setContentView(R.layout.notes_main);
 
         noteEditText = findViewById(R.id.noteText);
+        noteTitle = findViewById(R.id.noteTitle);
         scrollView = findViewById(R.id.scrollView);
 
         scrollView.setOnTouchListener((v, event) -> {
@@ -65,17 +63,21 @@ public class Notes extends AppCompatActivity {
     }
 
     private void sendStringToServer() {
-        final String message = noteEditText.getText().toString().trim();
-
+        String message = noteEditText.getText().toString().trim();
+        String title = noteTitle.getText().toString().trim();
         if (!message.isEmpty()) {
-            String url = "https://3cb1-2401-4900-596b-e17b-d424-230e-1b57-a72d.ngrok-free.app/save";
+            String url =  "https://d524-2401-4900-596b-e17b-9c1c-5906-d4f1-6fa8.ngrok-free.app/save";
             RequestQueue queue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     response -> {
+                        System.out.println("Server Response: " + response);
                         Toast.makeText(this, "Note saved successfully", Toast.LENGTH_SHORT).show();
                     },
                     error -> {
+                        String errorMessage = "Error saving note: " +
+                                (error.networkResponse != null ? error.networkResponse.statusCode : "Network error");
+                        System.out.println(errorMessage);
                         Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show();
                     }) {
 
@@ -84,9 +86,11 @@ public class Notes extends AppCompatActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
                     params.put("message", message);
+                    params.put("title", title);
                     return params;
                 }
             };
+
             queue.add(stringRequest);
         } else {
             Toast.makeText(this, "Note is empty", Toast.LENGTH_SHORT).show();
