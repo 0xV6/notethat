@@ -82,6 +82,12 @@ public class NotesUpdate extends AppCompatActivity {
         final String description = noteEditText.getText().toString().trim();
         final String title = noteTitleText.getText().toString().trim();
         final int noteId = this.noteId;
+        final int currentNoteId = getIntent().getIntExtra("note_id", -1);
+
+        if (currentNoteId == -1) {
+            Toast.makeText(this, "Invalid note ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String url = "https://db6e-2401-4900-a17b-d7ce-e8c2-9e8b-5a67-8c47.ngrok-free.app/update";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -113,8 +119,8 @@ public class NotesUpdate extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                params.put("note_id", String.valueOf(noteId));
-
+//                params.put("note_id", String.valueOf(noteId));
+                params.put("note_id", String.valueOf(currentNoteId));
                 if (!title.isEmpty()) {
                     params.put("title", title);
                 }
