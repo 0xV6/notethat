@@ -66,7 +66,7 @@ public class Notes extends AppCompatActivity {
         String message = noteEditText.getText().toString().trim();
         String title = noteTitle.getText().toString().trim();
         if (!message.isEmpty()) {
-            String url =  "https://d524-2401-4900-596b-e17b-9c1c-5906-d4f1-6fa8.ngrok-free.app/save";
+            String url =  "https://db6e-2401-4900-a17b-d7ce-e8c2-9e8b-5a67-8c47.ngrok-free.app/save";
             RequestQueue queue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

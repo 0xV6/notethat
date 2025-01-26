@@ -83,7 +83,7 @@ public class NotesUpdate extends AppCompatActivity {
         final String title = noteTitleText.getText().toString().trim();
         final int noteId = this.noteId;
 
-        String url = "https://d524-2401-4900-596b-e17b-9c1c-5906-d4f1-6fa8.ngrok-free.app/update";
+        String url = "https://db6e-2401-4900-a17b-d7ce-e8c2-9e8b-5a67-8c47.ngrok-free.app/update";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -125,10 +125,10 @@ public class NotesUpdate extends AppCompatActivity {
                 return params;
             }
         };
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+//                10000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(stringRequest);
     }

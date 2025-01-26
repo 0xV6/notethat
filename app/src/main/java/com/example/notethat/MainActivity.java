@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private void getNotes() {
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://d524-2401-4900-596b-e17b-9c1c-5906-d4f1-6fa8.ngrok-free.app/get-notes";
+        String url = "https://db6e-2401-4900-a17b-d7ce-e8c2-9e8b-5a67-8c47.ngrok-free.app/get-notes";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
                     try {
@@ -91,23 +91,24 @@ public class MainActivity extends AppCompatActivity {
 
                         titles.clear();
                         contents.clear();
+                        noteIds.clear();
                         ArrayList<String> displayItems = new ArrayList<>();
 
-                        int noteId = 0;
+//                        int noteId = 0;
                         for (int i = 0; i < notesArray.length(); i++) {
                             JSONObject note = notesArray.getJSONObject(i);
 
                             String title = note.getString("title");
                             String description = note.getString("description");
-
+                            int noteId = note.getInt("note_id");
+                            noteIds.add(noteId);
                             titles.add(title);
                             contents.add(description);
                             displayItems.add(title + "\n" + description);
-                            noteId = note.getInt("note_id");
+
                         }
 
                         adapter.clear();
-                        noteIds.add(noteId);
                         adapter.addAll(displayItems);
                         adapter.notifyDataSetChanged();
 
