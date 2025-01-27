@@ -100,7 +100,7 @@ public class Notes extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         String message = "User pressed the back button";
-        sendStringToServer();
+//        sendStringToServer();
         super.onBackPressed();
     }
 }
