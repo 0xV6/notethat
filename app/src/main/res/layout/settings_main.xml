@@ -52,19 +52,10 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:onClick="openSync"
-                    android:text="Sync"
+                    android:text="Account and Sync"
                     android:textSize="20dp"
                     app:cornerRadius="25dp" />
 
-                <Button
-                    android:id="@+id/button16"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="Account"
-                    android:textSize="20dp"
-                    app:cornerRadius="25dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,7 +80,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="Theme"
+                    android:text="Themes"
                     android:textSize="20dp"
                     app:cornerRadius="25dp" />
             </LinearLayout>
@@ -105,7 +96,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="Notification"
+                    android:text="Notes\nVersions"
                     android:textSize="20dp"
                     app:cornerRadius="25dp" />
 
