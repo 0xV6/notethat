@@ -15,9 +15,6 @@
         android:theme="@style/Theme.NoteThat"
         tools:targetApi="31">
         <activity
-            android:name=".ThemesSettings"
-            android:exported="false" />
-        <activity
             android:name=".SettingsMain"
             android:exported="false"
             android:parentActivityName=".MainActivity"
@@ -30,6 +27,9 @@
             android:parentActivityName=".SettingsMain"></activity>
         <activity
             android:name=".PrivacySettings"
+            android:parentActivityName=".SettingsMain"></activity>
+        <activity
+            android:name=".ThemesSettings"
             android:parentActivityName=".SettingsMain"></activity>
         <activity
             android:name=".NotesUpdate"

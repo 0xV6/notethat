@@ -31,4 +31,9 @@ public class SettingsMain extends AppCompatActivity {
         Intent intent = new Intent(this, PrivacySettings.class);
         startActivity(intent);
     }
+
+    public void openThemes(View v){
+        Intent intent = new Intent(this, ThemesSettings.class);
+        startActivity(intent);
+    }
 }
