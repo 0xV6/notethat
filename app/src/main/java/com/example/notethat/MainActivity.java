@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 return insets;
             });
 
-            getNotes();
+//            getNotes();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getNotes();
+//        getNotes();
     }
     public void openActivity(View v){
         Intent intent = new Intent(this, Notes.class);
